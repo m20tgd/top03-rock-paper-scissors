@@ -1,0 +1,64 @@
+<script>
+    
+function computerPlay(){
+    // Randomly select a number between 0-2
+    let num = Math.floor(Math.random()*3);
+    // Switch num and return 'Rock', 'Paper' or 'Scissors' depending on the result
+    switch (num){
+        case 0:
+            return 'Rock';
+        case 1:
+            return 'Paper';
+        case 2:
+            return 'Scissors';
+        default:
+            console.log("Something went wrong with computerPlay()");
+            debugger;
+    }
+}
+
+function playRound(playerSelection, computerSelection){
+
+    //Ensure string inputted by player only has a capital letter at the start
+    playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.toLowerCase().slice(1);
+    console.log("Player selected " + playerSelection);
+
+    //Create victory and defeat string messages and variable to record victory or defeat
+    const victoryMessage = `You won! ${playerSelection} beats ${computerSelection}`;
+    const defeatMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
+    let victory;
+
+    //Return a draw if the computer and player selections are the same
+    if (playerSelection === computerSelection){
+        return "It's a Draw. You're both losers!";
+    }
+    else{
+    //Otherwise switch through the playerSelections and return true or false for victory depending on
+    //whether or not the computerSelection loses to them.
+        switch (playerSelection){
+            case "Rock" :
+                victory = (computerSelection === "Scissors");
+                break;
+            case "Paper" : 
+                victory = (computerSelection === "Rock");
+                break;
+            case "Scissors" :
+                victory = (computerSelection === "Paper");
+                break;
+            default:
+                console.log(playerSelection + " " + computerSelection);
+                console.log("Something has gone wrong with checking for victory");
+                debugger;
+        }
+        
+        //Return either victory or defeat message based on victory.
+        return (victory) ? victoryMessage : defeatMessage;
+    }
+}
+
+const computerSelection = computerPlay();
+console.log("Computer selected " + computerSelection);
+let playerSelection = "ROCK";
+console.log(playRound(playerSelection, computerSelection));
+
+</script>

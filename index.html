@@ -1,20 +1,60 @@
 <script>
     
-function computerPlay(){
-    // Randomly select a number between 0-2
-    let num = Math.floor(Math.random()*3);
-    // Switch num and return 'Rock', 'Paper' or 'Scissors' depending on the result
-    switch (num){
-        case 0:
-            return 'Rock';
-        case 1:
-            return 'Paper';
-        case 2:
-            return 'Scissors';
-        default:
-            console.log("Something went wrong with computerPlay()");
-            debugger;
+function game(){
+    
+    //Declare variables for player and computer score and set to 0.
+    let playerScore = 0;
+    let computerScore = 0;
+
+    //Create a loop that will iterate 5 times so 5 rounds are played.
+    for (let i = 0; i < 5; i++ ){
+        //Get input from the player
+        let playerSelection = playerChoice();
+        console.log(playerSelection);
+        //Randomly select computer's choice
+        let computerSelection = computerChoice();
+        //Compare choices and establish win/lose/draw
+        //Update the player and computer scores appropriately
+        //Update console log with win/lose/draw and new scores
     }
+
+    //Calculate who won
+    //Update console log with result
+}
+
+function playerChoice(){
+
+    //Declare variable for input from player and set to ""
+    let input = ""
+
+    //Get input from player and loop until valid choice provided
+    while (true){
+        input = prompt("Choose your weapon: \n Rock, Paper or Scissors?", "test");
+        if (input != null){ //If player pressed cancel and input is null, then skip  
+            console.log(input);
+            //Change to all lower case
+            input = input.toLowerCase();
+            //Check for valid entry and break out of loop if valid
+            if (input === "rock" || input === "paper" || input === "scissors"){
+                break;
+            }
+        }
+        //If entry is not valid then alert message sent before the loop starts again
+        alert("Invalid choice. \n Please try again");
+    }
+
+    //Switch choices and return 0 for 'rock', 1 for 'paper' and 2 for 'scissors'
+    switch (input){
+        case "rock" : return 0;
+        case "paper" : return 1;
+        case "scissors" : return 2;
+    }
+    
+}
+
+function computerChoice(){
+    // Randomly select a number between 0-2
+    return num = Math.floor(Math.random()*3); //0 = Rock, 1 = Paper, 2 = Scissors
 }
 
 function playRound(playerSelection, computerSelection){
@@ -56,9 +96,6 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-const computerSelection = computerPlay();
-console.log("Computer selected " + computerSelection);
-let playerSelection = "ROCK";
-console.log(playRound(playerSelection, computerSelection));
+game();
 
 </script>

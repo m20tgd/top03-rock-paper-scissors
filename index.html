@@ -10,12 +10,26 @@ function game(){
     for (let i = 0; i < 5; i++ ){
         //Get input from the player
         let playerSelection = playerChoice();
-        console.log(playerSelection);
         //Randomly select computer's choice
         let computerSelection = computerChoice();
         //Compare choices and establish win/lose/draw
-        //Update the player and computer scores appropriately
-        //Update console log with win/lose/draw and new scores
+        let victory = establishWinner(playerSelection, computerSelection);
+        //If null is returned, then announce a draw and don't alter the scores
+        if (victory === null){
+            console.log("It's a draw! You're both losers");
+        }
+        //Otherwise check to for victory, update score and announce result.
+        else {
+            if (victory){
+                playerScore++;
+                console.log(`You won! ${getSelectionString(playerSelection)} beats ${getSelectionString(computerSelection)}.`)
+            }
+            else {
+                computerScore++;
+                console.log(`You lost! ${getSelectionString(computerSelection)} beats ${getSelectionString(playerSelection)}.`)
+            }
+        }
+
     }
 
     //Calculate who won
@@ -29,10 +43,9 @@ function playerChoice(){
 
     //Get input from player and loop until valid choice provided
     while (true){
-        input = prompt("Choose your weapon: \n Rock, Paper or Scissors?", "test");
-        if (input != null){ //If player pressed cancel and input is null, then skip  
-            console.log(input);
-            //Change to all lower case
+        input = prompt("Choose your weapon: \n Rock, Paper or Scissors?", "rock");
+        if (input != null){ //If player pressed cancel and input is null, then skip
+            //Change to all lower case for validation checks
             input = input.toLowerCase();
             //Check for valid entry and break out of loop if valid
             if (input === "rock" || input === "paper" || input === "scissors"){
@@ -43,56 +56,50 @@ function playerChoice(){
         alert("Invalid choice. \n Please try again");
     }
 
-    //Switch choices and return 0 for 'rock', 1 for 'paper' and 2 for 'scissors'
+    //Switch choice and return 0 for 'rock', 1 for 'paper' and 2 for 'scissors'
     switch (input){
         case "rock" : return 0;
         case "paper" : return 1;
         case "scissors" : return 2;
     }
-    
 }
 
 function computerChoice(){
-    // Randomly select a number between 0-2
+    // Randomly select a number between 0-2 and return
     return num = Math.floor(Math.random()*3); //0 = Rock, 1 = Paper, 2 = Scissors
 }
 
-function playRound(playerSelection, computerSelection){
+function establishWinner(playerSelection, computerSelection){
 
-    //Ensure string inputted by player only has a capital letter at the start
-    playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.toLowerCase().slice(1);
-    console.log("Player selected " + playerSelection);
-
-    //Create victory and defeat string messages and variable to record victory or defeat
-    const victoryMessage = `You won! ${playerSelection} beats ${computerSelection}`;
-    const defeatMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
-    let victory;
-
-    //Return a draw if the computer and player selections are the same
+    //Return null as a draw if the computer and player selections are the same
     if (playerSelection === computerSelection){
-        return "It's a Draw. You're both losers!";
+        return null; //Draw
     }
     else{
-    //Otherwise switch through the playerSelections and return true or false for victory depending on
-    //whether or not the computerSelection loses to them.
+    //Otherwise switch through the playerSelections and compare them to the computerSelection. Return
+    //true for victory and false for defeat.
         switch (playerSelection){
-            case "Rock" :
-                victory = (computerSelection === "Scissors");
-                break;
-            case "Paper" : 
-                victory = (computerSelection === "Rock");
-                break;
-            case "Scissors" :
-                victory = (computerSelection === "Paper");
-                break;
+            case 0 : //Rock
+                return (computerSelection === 2) ? true : false;
+            case 1 : //Paper
+            return (computerSelection === 1) ? true : false;
+            case 2 : //Scissors
+            return (computerSelection === 0) ? true : false;
             default:
                 console.log(playerSelection + " " + computerSelection);
                 console.log("Something has gone wrong with checking for victory");
                 debugger;
         }
-        
-        //Return either victory or defeat message based on victory.
-        return (victory) ? victoryMessage : defeatMessage;
+    }
+}
+
+//Create a function to return a string of the name of the selection from the number that represents it.
+function getSelectionString(choice){
+    switch(choice){
+        case 0 : return "Rock";
+        case 1 : return "Paper";
+        case 2 : return "scissors";
+        default : console.log("Something went wrong with getSelectionString");
     }
 }
 

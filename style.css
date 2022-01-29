@@ -14,6 +14,7 @@ button{
 .container{
     background: #dbd4d0;
     width: 40%;
+    min-width: 400px;
     margin: 5em auto;
     border: .25em solid #596082;
     border-radius: 5em;

@@ -1,0 +1,68 @@
+body{
+    font-family: "Comic Sans MS", "Comic Sans", serif;
+}
+
+button{
+    font-family: inherit;
+}
+
+ .title, .display, .scores, .buttons, .reset{
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    background: #dbd4d0;
+    width: 40%;
+    margin: 5em auto;
+    border: .25em solid #596082;
+    border-radius: 5em;
+}
+
+.title{
+    padding: 1em 0;
+    font-size: 30px;
+}
+
+.screen{
+    margin: 0em 5em 1em 5em;
+    background: #7abe32;
+    border-radius: 1em;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.display{
+    height: 10em;
+    align-items: center;
+}
+
+.scores{
+    padding: 1em 0;
+    justify-content: space-around;
+    align-items: center;
+    border-top: solid .1em black;
+}
+
+.buttons{
+    height: 4em;
+    gap: 3em;
+}
+
+.inputButton{
+    width: 6em;
+    border-radius: 4em;
+    color: silver;
+    background: #61181d;
+}
+
+.reset{
+    height: 4em;
+    align-items: center;
+}
+
+#reset-button{
+    border-radius: 1em;
+    color: silver;
+    background: #61181d;
+}

@@ -7,13 +7,14 @@ let computerSelection;
 
 
 //Assign DOM elements to variables
-const score = document.querySelector('.score');
+const playerScoreDisplay = document.querySelector('#player-score');
+const computerScoreDisplay = document.querySelector('#cpu-score');
 const display = document.querySelector('.display');
 const inputButtons = document.querySelectorAll('.inputButton');
 const rBtn = document.querySelector('#rockButton');
 const pBtn = document.querySelector('#paperButton');
 const sBtn = document.querySelector('#scissorsButton');
-const resetBtn = document.querySelector('.reset-button');
+const resetBtn = document.querySelector('#reset-button');
 //Add event listeners to input buttons so a round is played when one is selected with the 
 //correct numerical input for the selection (0 for Rock, 1 for Paper and 2 for Scissors)
 rBtn.addEventListener("click", () => playRound(0));
@@ -22,8 +23,9 @@ sBtn.addEventListener("click", () => playRound(2));
 //Add event listener to Reset button so the game is reset if it is pressed
 resetBtn.addEventListener("click", resetGame);
     
-//Create a function to play 5 rounds of Rock Paper Scissors
+//Create a function to play a round of Rock Paper Scissors when player presses an input button
 function playRound(playerChoice){
+        //playerChoice provided by the input button
         playerSelection = playerChoice;
         //Randomly select computer's choice
         computerSelection = computerChoice();
@@ -59,10 +61,6 @@ function establishWinner(playerSelection, computerSelection){
             return (computerSelection === 1) ? true : false;
             case 2 : //Scissors
             return (computerSelection === 0) ? true : false;
-            default:
-                console.log(playerSelection + " " + computerSelection);
-                console.log("Something has gone wrong with checking for victory");
-                debugger;
         }
     }
 }
@@ -72,7 +70,7 @@ function roundResult(victory){
     if (victory === null){
             display.innerText = "This round was a draw";
         }
-        //Otherwise check to for victory, update score and announce result.
+        //Otherwise check for victory, update score and announce result.
         else {
             if (victory){
                 playerScore++;
@@ -89,7 +87,8 @@ function roundResult(victory){
 
 //Create a function to update the score display
 function updateScore(){
-    score.innerText = `Player - ${playerScore} Computer - ${computerScore}`
+    playerScoreDisplay.innerText = `Player: ${playerScore}`;
+    computerScoreDisplay.innerText = `Computer: ${computerScore}`;
 }
 
 //Create a function to return a string of the name of the selection from the number that represents it.
@@ -98,7 +97,6 @@ function getSelectionString(choice){
         case 0 : return "Rock";
         case 1 : return "Paper";
         case 2 : return "Scissors";
-        default : console.log("Something went wrong with getSelectionString");
     }
 }
 

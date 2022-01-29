@@ -35,6 +35,7 @@ button{
 
 .display{
     height: 10em;
+    padding: 0 1em;
     align-items: center;
 }
 

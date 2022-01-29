@@ -58,14 +58,17 @@ function establishWinner(playerSelection, computerSelection){
             case 0 : //Rock
                 return (computerSelection === 2) ? true : false;
             case 1 : //Paper
-            return (computerSelection === 1) ? true : false;
+                return (computerSelection === 0) ? true : false;
             case 2 : //Scissors
-            return (computerSelection === 0) ? true : false;
+                return (computerSelection === 1) ? true : false;
         }
     }
 }
 
 function roundResult(victory){
+    console.log(`Player Choice - ${getSelectionString(playerSelection)} (${playerSelection})`);
+    console.log(`Computer Choice - ${getSelectionString(computerSelection)} (${computerSelection})`);
+    console.log(`Player has won - ${victory}`);
     //If victory is null, then announce a draw and don't alter the scores
     if (victory === null){
             display.innerText = "This round was a draw";

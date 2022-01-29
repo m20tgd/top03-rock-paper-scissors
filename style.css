@@ -13,8 +13,7 @@ button{
 
 .container{
     background: #dbd4d0;
-    width: 40%;
-    min-width: 400px;
+    width: 30em;
     margin: 5em auto;
     border: .25em solid #596082;
     border-radius: 5em;
@@ -23,6 +22,7 @@ button{
 .title{
     padding: 1em 0;
     font-size: 30px;
+    flex: 0 0 auto;
 }
 
 .screen{
